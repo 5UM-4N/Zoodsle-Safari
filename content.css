@@ -1,0 +1,144 @@
+/* ZoodSle Safari Content Styles - macOS VoiceOver & High-Contrast Support */
+
+.zoodsle-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Action Badge on feed images (macOS styled) */
+.zoodsle-action-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 99999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background-color: rgba(10, 15, 29, 0.95);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #38bdf8;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+}
+
+.zoodsle-action-badge:hover {
+  background-color: rgba(15, 23, 42, 0.98);
+  border-color: #7dd3fc;
+}
+
+.zoodsle-action-badge:focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+  background-color: #0284c7;
+}
+
+.zoodsle-action-badge .zoodsle-badge-icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #38bdf8 35%, #0284c7 100%);
+  display: inline-block;
+}
+
+.zoodsle-action-badge .zoodsle-badge-shortcut {
+  font-size: 11px;
+  color: #94a3b8;
+  background: rgba(30, 41, 59, 0.8);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #334155;
+}
+
+/* Description Card */
+.zoodsle-description-card {
+  margin-top: 8px;
+  padding: 12px 16px;
+  background-color: rgba(10, 15, 29, 0.96);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  color: #f8fafc;
+  border-left: 4px solid #38bdf8;
+  border-radius: 0 8px 8px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  z-index: 99998;
+}
+
+.zoodsle-description-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #38bdf8;
+}
+
+.zoodsle-description-body {
+  margin: 0;
+  color: #e2e8f0;
+}
+
+.zoodsle-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.zoodsle-card-btn {
+  background: rgba(30, 41, 59, 0.9);
+  color: #f8fafc;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.zoodsle-card-btn:hover {
+  background: #334155;
+}
+
+.zoodsle-card-btn:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 1px;
+}
+
+/* High contrast & reduced motion */
+@media (forced-colors: active) {
+  .zoodsle-action-badge,
+  .zoodsle-description-card,
+  .zoodsle-card-btn {
+    forced-color-adjust: none;
+    border: 2px solid ButtonText !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zoodsle-action-badge,
+  .zoodsle-card-btn {
+    transition: none !important;
+  }
+}

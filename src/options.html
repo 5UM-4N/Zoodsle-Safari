@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZoodSle Settings & Accessibility (Safari)</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="options-header">
+      <div class="brand">
+        <div class="logo-mark" aria-hidden="true">
+          <div class="eye-pupil"></div>
+        </div>
+        <div>
+          <h1 class="brand-title">ZoodSle Settings <span class="edition-tag">Safari Edition</span></h1>
+          <p class="brand-tagline">The web, understood aloud. Local-first AI accessibility on macOS.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="options-main">
+      <!-- Backend Configuration -->
+      <section class="card" aria-labelledby="heading-backend">
+        <h2 id="heading-backend" class="card-title">Local Infrastructure</h2>
+        <p class="card-desc">ZoodSle connects strictly to your local on-device AI (LM Studio or ZoodSle server).</p>
+        
+        <div class="form-group">
+          <label for="backendUrlInput" class="label">Local AI Endpoint URL</label>
+          <input type="url" id="backendUrlInput" class="text-input" value="http://127.0.0.1:1234/v1" placeholder="http://127.0.0.1:1234/v1" required>
+          <span class="help-text">Default: <code>http://127.0.0.1:1234/v1</code> (Direct LM Studio). Also supports <code>http://127.0.0.1:8000</code> (ZoodSle Server).</span>
+        </div>
+
+        <div class="action-row">
+          <button type="button" id="testConnectionBtn" class="btn btn-secondary">Test Connection</button>
+          <span id="testConnectionResult" class="test-result" role="status"></span>
+        </div>
+      </section>
+
+      <!-- Universal Web Image Filtering -->
+      <section class="card" aria-labelledby="heading-detection">
+        <h2 id="heading-detection" class="card-title">Universal Web Image Filtering</h2>
+        <p class="card-desc">Dimension thresholds to filter out profile avatars, icons, and decorative elements across any webpage.</p>
+
+        <div class="form-group">
+          <label for="minDimensionInput" class="label">Minimum Image Dimension (pixels)</label>
+          <input type="number" id="minDimensionInput" class="text-input" min="100" max="800" step="10" value="180">
+          <span class="help-text">Images below this width or height are ignored (default: 180px).</span>
+        </div>
+      </section>
+
+      <!-- Speech & macOS Voice -->
+      <section class="card" aria-labelledby="heading-speech">
+        <h2 id="heading-speech" class="card-title">macOS Voice & Speech Synthesis</h2>
+        <p class="card-desc">Configure narration volume and macOS system voice integration.</p>
+
+        <div class="form-group">
+          <label for="speechVolumeInput" class="label">Speech Volume</label>
+          <input type="range" id="speechVolumeInput" class="range-slider" min="0.1" max="1.0" step="0.1" value="1.0">
+          <div class="slider-labels">
+            <span>10%</span>
+            <span id="volumeValue">100%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Keyboard Shortcuts -->
+      <section class="card" aria-labelledby="heading-shortcuts">
+        <h2 id="heading-shortcuts" class="card-title">macOS Keyboard Shortcuts</h2>
+        <p class="card-desc">Accessible keyboard navigation shortcuts optimized for Safari and VoiceOver on any website.</p>
+
+        <table class="shortcuts-table">
+          <thead>
+            <tr>
+              <th scope="col">Action</th>
+              <th scope="col">macOS Shortcut</th>
+              <th scope="col">Scope</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Describe focused or active photo</td>
+              <td><kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>D</kbd> (Option+Shift+D)</td>
+              <td>Any Web Page</td>
+            </tr>
+            <tr>
+              <td>Stop speech narration immediately</td>
+              <td><kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>S</kbd> (Option+Shift+S)</td>
+              <td>Any Web Page</td>
+            </tr>
+            <tr>
+              <td>Activate in-page description button</td>
+              <td><kbd>Tab</kbd> to focus, <kbd>Return</kbd> or <kbd>Space</kbd></td>
+              <td>Image Hover/Focus</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Privacy & Architecture -->
+      <section class="card" aria-labelledby="heading-privacy">
+        <h2 id="heading-privacy" class="card-title">Privacy & Local Processing</h2>
+        <div class="privacy-content">
+          <p>
+            <strong>100% Local Inference:</strong> Every image analyzed by ZoodSle is processed locally on your Apple Silicon Mac using
+            <code>qwen/qwen3-vl-4b</code> in LM Studio. No photos, descriptions, or conversation logs are sent to cloud services,
+            external AI providers, or remote analytics.
+          </p>
+          <p>
+            <strong>Safari Permissions:</strong> Access to <code>http://127.0.0.1:8000/*</code> is used strictly for the local
+            vision backend, and standard web host permissions allow inspecting photos and presenting descriptions across any webpage.
+          </p>
+        </div>
+      </section>
+
+      <!-- Maintenance -->
+      <section class="card" aria-labelledby="heading-maintenance">
+        <h2 id="heading-maintenance" class="card-title">Cache & Reset</h2>
+        <p class="card-desc">Clear stored preferences or reset all settings.</p>
+        <div class="action-row">
+          <button type="button" id="clearCacheBtn" class="btn btn-danger">Reset All Settings to Defaults</button>
+          <span id="clearCacheResult" class="test-result" role="status"></span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="options-footer">
+      <div class="save-bar">
+        <span id="saveStatus" class="save-status" role="status">All changes saved automatically.</span>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>
